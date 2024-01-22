@@ -78,23 +78,31 @@ try:
 except KeyboardInterrupt:
     pass  # Manejo de Ctrl+C para salir del programa de manera limpia
 
-print("presiona")
-print(" ____")
-print("||↑ ||")
-print("||__||")
-print("|/__\|")
-import readchar
+import os
 
-# Bucle infinito para leer y procesar caracteres del teclado
-while True:
-    key2 = readchar.readchar()  # Lee un caracter del teclado
+def clear_terminal():
+    # Función para borrar la terminal según el sistema operativo
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-    # Verifica si se ha presionado la tecla de flecha hacia arriba (UP)
-    if key2 == 'H':
-        print("Tecla UP presionada. Saliendo del programa.")
-        break
+def main():
+    # Iniciar con un número en 0
+    numero = 0
 
-    # Imprime el caracter leído
-    print(f"Caracter leído: {key2}")
+    # Bucle para leer la tecla 'n' y actualizar el número hasta llegar a 50
+    while numero <= 50:
+        # Borrar la terminal e imprimir el nuevo número
+        clear_terminal()
+        print("Número:", numero)
 
-# Cierra el programa
+        # Leer la tecla 'n' del teclado
+        print("Presiona 'n' para continuar: ")
+        input_key = readchar.readchar()
+        # Verificar si se presionó la tecla 'n'
+        if input_key  == 'n':
+            numero += 1
+        else:
+            print("Tecla incorrecta. Presiona 'n' para continuar.")
+
+if __name__ == "__main__":
+    main()
+
